@@ -9,7 +9,8 @@ def compute_error_for_given_points(b, m, points):
 
 
 def step_gradient(b_current, m_current, learning_rate, points):
-    b_gradient, m_gradient = 0, 0
+    b_gradient = 0
+    m_gradient = 0
     N = len(points)
     for point in points:
         x_i, y_i = point 
@@ -23,13 +24,14 @@ def step_gradient(b_current, m_current, learning_rate, points):
 def gradient_descent_runner(starting_b, starting_m, learning_rate, points, num_iterations):
     b, m = starting_b, starting_m
     for i in range(num_iterations):
-        b, m = step_gradient(b, m, learning_rate, np.array(points))
+        b, m = step_gradient(b, m, learning_rate, points)
     return b, m
 
 
 def run():
     points = np.genfromtxt('./linear_regression_live/data.csv', delimiter=',')
-    starting_b, starting_m = 0, 0
+    starting_b = 0
+    starting_m = 0
     learning_rate = .0001
     num_iterations = 10000
     print('Starting gradient at b: {}, m: {}, error: {}'.format(starting_b,
